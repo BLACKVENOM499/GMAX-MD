@@ -45,64 +45,6 @@ cmd(tiktokDownloader, async (bot, msg, quotedMsg, {
           ]
         }
       ];
-
-      const image = { url: response.result.thumbnail };
-      const footer = { caption: message, footer: config.FOOTER, buttonText: "*🔢 Reply below number*", sections: options };
-
-      const quotedData = { quoted: quotedMsg };
-      return await bot.replyList(from, footer, quotedData);
-    }
-
-    if (config.MODE === "button") {
-      const buttonOptions = [
-        {
-          title: "Without Watermark",
-          rows: [
-            { header: '', title: '', description: "Without Watermark", id: prefix + "ttw " + q },
-            { header: '', title: '', description: "Without Watermark Doc", id: prefix + "ttwd " + q }
-          ]
-        },
-        {
-          title: "With Watermark",
-          rows: [
-            { header: '', title: '', description: "With Watermark", id: prefix + "tnd " + q },
-            { header: '', title: '', description: "With Watermark Doc", id: prefix + "tndd " + q }
-          ]
-        },
-        {
-          title: "Voice Cut Type 🎶",
-          rows: [
-            { header: '', title: '', description: "Audio Download", id: prefix + "ta " + q },
-            { header: '', title: '', description: "Document Download", id: prefix + "td " + q }
-          ]
-        }
-      ];
-
-      const buttons = {
-        title: "Click Here⎙",
-        sections: buttonOptions
-      };
-
-      const logo = { url: config.LOGO };
-      const button1 = { displayText: "🪫 `SD` QUALITY VIDEO", buttonId: prefix + "ttw " + q };
-      const button2 = { displayText: "🔋 `HD` QUALITY VIDEO", buttonId: prefix + "tnd " + q };
-      const button3 = { displayText: "🎶 Audio file", buttonId: prefix + "ta " + q };
-
-      const quotedData = { quoted: quotedMsg };
-
-      await bot.sendMessage(from, {
-        image: logo,
-        caption: message,
-        footer: config.FOOTER,
-        buttons: [button1, button2, button3, {
-          buttonId: "action",
-          buttonText: { displayText: "Interactive Meta" },
-          type: 4,
-          nativeFlowInfo: { name: "single_select", paramsJson: JSON.stringify(buttons) }
-        }],
-        headerType: 1,
-        viewOnce: true
-      }, quotedData);
     }
   } catch (error) {
     reply("*ERROR !!*");
